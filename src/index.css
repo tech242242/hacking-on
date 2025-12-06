@@ -2,20 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Basic cinematic + terminal styles */
+/* Updated CSS to avoid using @apply with a custom color utility that the build
+   environment could not resolve. Using explicit color values is more robust
+   across different Tailwind/PostCSS setups.
+
+   SIMULATION ONLY - NO REAL TRACKING
+*/
+
+/* Cinematic base */
 body {
-  @apply bg-hacker-black text-green-200;
+  /* replaced `@apply bg-hacker-black text-green-200` with explicit values
+     because custom utility generation can sometimes be missed during build. */
+  background-color: #030405; /* hacker-black */
+  color: #9AE6B4; /* green-ish readable text fallback */
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-/* Terminal panel */
+/* Terminal panel - kept visual style but expressed with plain CSS for stability */
 .terminal {
-  @apply bg-[#000000] bg-opacity-60 border border-green-900 rounded-lg p-4 text-neon-green font-mono shadow-neon-glow;
+  background-color: rgba(0,0,0,0.6);
+  border: 1px solid #002200; /* green-900-like */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: #00ff7f; /* neon-green */
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  box-shadow: 0 0 16px rgba(0,255,127,0.12), 0 0 48px rgba(0,255,127,0.06);
 }
 
 /* Red disclaimer banner at top */
 .disclaimer {
-  @apply fixed top-0 left-0 right-0 bg-danger-red text-white text-sm py-2 px-4 z-50 flex justify-center items-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ff0033; /* danger-red */
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Glass panels */
